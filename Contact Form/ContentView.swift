@@ -21,13 +21,14 @@ struct ContentView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("How can we reach you?")) {
                     Picker("Contact Method", selection: $preferredContactMethod) {
                         Text("Email").tag(ContactMethod.email)
                         Text("Phone").tag(ContactMethod.phone)
                     }
+                    .pickerStyle(.segmented)
                     switch preferredContactMethod {
                     case .email:
                         TextField("Email Address", text: $emailAddress)
@@ -52,6 +53,7 @@ struct ContentView: View {
                     print("Submit button tapped")
                 })
             }
+            .navigationTitle("Contact Us!")
         }
     }
 }
